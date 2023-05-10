@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_08_134214) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_09_095025) do
+  create_table "campings", force: :cascade do |t|
+    t.string "name"
+    t.string "region"
+    t.string "city"
+    t.string "definition"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.string "country"
+    t.string "region"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "definition"
