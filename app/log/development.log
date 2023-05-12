@@ -67,3 +67,142 @@ Migrating to CreateCampings (20230509095025)
   [1m[36mActiveRecord::InternalMetadata Load (2.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[36mActiveRecord::SchemaMigration Pluck (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (5.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-05-12 08:12:52 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/aleksey/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/aleksey/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 15.5ms | Allocations: 489)
+Completed 200 OK in 270ms (Views: 105.2ms | ActiveRecord: 0.0ms | Allocations: 3516)
+
+
+Started GET "/campings" for 127.0.0.1 at 2023-05-12 08:13:05 +0300
+Processing by CampingsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering campings/index.html.erb within layouts/application
+  [1m[36mCamping Load (2.4ms)[0m  [1m[34mSELECT "campings".* FROM "campings"[0m
+  ↳ app/views/campings/index.html.erb:6
+  Rendered campings/index.html.erb within layouts/application (Duration: 24.6ms | Allocations: 1295)
+  Rendered layout layouts/application.html.erb (Duration: 2975.1ms | Allocations: 92110)
+Completed 200 OK in 3125ms (Views: 2987.1ms | ActiveRecord: 2.4ms | Allocations: 93730)
+
+
+Started GET "/campings/new" for 127.0.0.1 at 2023-05-12 08:13:19 +0300
+Processing by CampingsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering campings/new.html.erb within layouts/application
+  Rendered campings/_form.html.erb (Duration: 616.8ms | Allocations: 5234)
+  Rendered campings/new.html.erb within layouts/application (Duration: 645.5ms | Allocations: 5559)
+  Rendered layout layouts/application.html.erb (Duration: 752.9ms | Allocations: 7683)
+Completed 200 OK in 921ms (Views: 754.7ms | ActiveRecord: 12.8ms | Allocations: 19307)
+
+
+Started POST "/campings" for 127.0.0.1 at 2023-05-12 08:14:38 +0300
+Processing by CampingsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "camping"=>{"name"=>"WorldOfCampings", "region"=>"Volgograd District", "city"=>"Volgograd", "definition"=>"Funny"}, "commit"=>"Create Camping"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/campings_controller.rb:27:in `block in create'
+  [1m[36mCamping Create (14.2ms)[0m  [1m[32mINSERT INTO "campings" ("name", "region", "city", "definition", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "WorldOfCampings"], ["region", "Volgograd District"], ["city", "Volgograd"], ["definition", "Funny"], ["created_at", "2023-05-12 05:14:38.187330"], ["updated_at", "2023-05-12 05:14:38.187330"]]
+  ↳ app/controllers/campings_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (158.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/campings_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/campings/1
+Completed 302 Found in 218ms (ActiveRecord: 173.1ms | Allocations: 3771)
+
+
+Started GET "/campings/1" for 127.0.0.1 at 2023-05-12 08:14:38 +0300
+Processing by CampingsController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mCamping Load (3.6ms)[0m  [1m[34mSELECT "campings".* FROM "campings" WHERE "campings"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/campings_controller.rb:63:in `set_camping'
+  Rendering layout layouts/application.html.erb
+  Rendering campings/show.html.erb within layouts/application
+  Rendered campings/_camping.html.erb (Duration: 16.2ms | Allocations: 244)
+  Rendered campings/show.html.erb within layouts/application (Duration: 87.3ms | Allocations: 1401)
+  Rendered layout layouts/application.html.erb (Duration: 191.9ms | Allocations: 3500)
+Completed 200 OK in 251ms (Views: 193.5ms | ActiveRecord: 3.6ms | Allocations: 6157)
+
+
+Started GET "/campings" for 127.0.0.1 at 2023-05-12 08:14:44 +0300
+Processing by CampingsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering campings/index.html.erb within layouts/application
+  [1m[36mCamping Load (2.6ms)[0m  [1m[34mSELECT "campings".* FROM "campings"[0m
+  ↳ app/views/campings/index.html.erb:6
+  Rendered campings/_camping.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered campings/index.html.erb within layouts/application (Duration: 8.2ms | Allocations: 911)
+  Rendered layout layouts/application.html.erb (Duration: 110.2ms | Allocations: 3016)
+Completed 200 OK in 140ms (Views: 108.9ms | ActiveRecord: 2.6ms | Allocations: 3287)
+
+
+Started GET "/cities" for 127.0.0.1 at 2023-05-12 08:15:11 +0300
+Processing by CitiesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cities/index.html.erb within layouts/application
+  [1m[36mCity Load (26.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  ↳ app/views/cities/index.html.erb:6
+  Rendered cities/index.html.erb within layouts/application (Duration: 46.3ms | Allocations: 1098)
+  Rendered layout layouts/application.html.erb (Duration: 141.9ms | Allocations: 3327)
+Completed 200 OK in 241ms (Views: 121.4ms | ActiveRecord: 26.6ms | Allocations: 4428)
+
+
+Started GET "/regions" for 127.0.0.1 at 2023-05-12 08:15:20 +0300
+Processing by RegionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering regions/index.html.erb within layouts/application
+  [1m[36mRegion Load (31.2ms)[0m  [1m[34mSELECT "regions".* FROM "regions"[0m
+  ↳ app/views/regions/index.html.erb:6
+  Rendered regions/index.html.erb within layouts/application (Duration: 51.1ms | Allocations: 1112)
+  Rendered layout layouts/application.html.erb (Duration: 148.5ms | Allocations: 3319)
+Completed 200 OK in 251ms (Views: 124.4ms | ActiveRecord: 31.2ms | Allocations: 4407)
+
+
+Started GET "/regions/new" for 127.0.0.1 at 2023-05-12 08:15:29 +0300
+Processing by RegionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering regions/new.html.erb within layouts/application
+  Rendered regions/_form.html.erb (Duration: 135.3ms | Allocations: 1982)
+  Rendered regions/new.html.erb within layouts/application (Duration: 164.0ms | Allocations: 2289)
+  Rendered layout layouts/application.html.erb (Duration: 266.0ms | Allocations: 4394)
+Completed 200 OK in 324ms (Views: 267.1ms | ActiveRecord: 11.0ms | Allocations: 7547)
+
+
+Started GET "/campings" for 127.0.0.1 at 2023-05-12 08:15:49 +0300
+Processing by CampingsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering campings/index.html.erb within layouts/application
+  [1m[36mCamping Load (2.2ms)[0m  [1m[34mSELECT "campings".* FROM "campings"[0m
+  ↳ app/views/campings/index.html.erb:6
+  Rendered campings/_camping.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered campings/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 923)
+  Rendered layout layouts/application.html.erb (Duration: 101.3ms | Allocations: 3030)
+Completed 200 OK in 133ms (Views: 100.3ms | ActiveRecord: 2.2ms | Allocations: 3308)
+
+
+Started GET "/campings/1" for 127.0.0.1 at 2023-05-12 09:20:57 +0300
+Processing by CampingsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCamping Load (2.8ms)[0m  [1m[34mSELECT "campings".* FROM "campings" WHERE "campings"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/campings_controller.rb:63:in `set_camping'
+  Rendering layout layouts/application.html.erb
+  Rendering campings/show.html.erb within layouts/application
+  Rendered campings/_camping.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered campings/show.html.erb within layouts/application (Duration: 2.2ms | Allocations: 560)
+  Rendered layout layouts/application.html.erb (Duration: 106.0ms | Allocations: 2657)
+Completed 200 OK in 155ms (Views: 107.2ms | ActiveRecord: 6.2ms | Allocations: 3574)
+
+
+Started GET "/campings" for 127.0.0.1 at 2023-05-12 09:21:13 +0300
+Processing by CampingsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering campings/index.html.erb within layouts/application
+  [1m[36mCamping Load (2.1ms)[0m  [1m[34mSELECT "campings".* FROM "campings"[0m
+  ↳ app/views/campings/index.html.erb:6
+  Rendered campings/_camping.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered campings/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 930)
+  Rendered layout layouts/application.html.erb (Duration: 98.9ms | Allocations: 3035)
+Completed 200 OK in 130ms (Views: 97.9ms | ActiveRecord: 2.1ms | Allocations: 3306)
+
+
